@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const uploadForm = document.getElementById('uploadForm');
     const fileInput = document.getElementById('file-input');
     const loadingText = document.querySelector('#halaman-loading p');
+    const namaPengaploadInput = document.getElementById('nama_pengapload');
 
     let historyStack = [halamanDept];
 
@@ -106,7 +107,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 2. Upload file langsung ke URL yang didapat dari Google Drive
                 const uploadResponse = await fetch(uploadUrl, {
                     method: 'PUT',
-                    headers: { 'Content-Length': file.size },
+                    headers: {
+                        'Content-Type': file.type || 'application/octet-stream'
+                    },
                     body: file
                 });
 
@@ -122,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        alert(`Upload selesai!\n\nBerhasil: ${successfulUploads} file\nGagal: ${failedUploads} file`);
+        alert(`Matursuwun rekan/rekanita ${namaPengaploadInput.value}, sehat-sehat nggeh, mugi barokah !!\n\nBerhasil: ${successfulUploads} file\nGagal: ${failedUploads} file`);
         
         historyStack = [halamanDept];
         goToPage(halamanDept);
