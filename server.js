@@ -37,9 +37,10 @@ async function findOrCreateFolder(parentId, folderName) {
         return res.data.files[0].id;
     } else {
         const fileMetadata = { name: folderName, mimeType: 'application/vnd.google-apps.folder', parents: [parentId] };
-        const folder = await driveService.files.create({
+        const driveRes = await driveService.files.create({
             resource: fileMetadata,
-            fields: 'id',
+            params: { uploadType: 'resumable' }, // Pastikan 'params' digunakan di sini
+            fields: 'id'
         });
         return folder.data.id;
     }

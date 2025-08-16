@@ -1,21 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const halamanKategori = document.getElementById('halaman-kategori');
+    // Pastikan ID ini sesuai dengan yang ada di index.html
+    const halamanDept = document.getElementById('halaman-departemen');
+    const halamanMedia = document.getElementById('halaman-media');
     const halamanForm = document.getElementById('halaman-form');
     const halamanLoading = document.getElementById('halaman-loading');
     const tombolKembali = document.getElementById('tombol-kembali');
-    const judulForm = document.getElementById('judul-form');
-    const loadingText = document.querySelector('#halaman-loading p');
     
-    const formKategori = document.getElementById('form-kategori');
+    const formDepartemen = document.getElementById('form-departemen');
+    const formTipeMedia = document.getElementById('form-tipe-media');
     const uploadForm = document.getElementById('uploadForm');
+    const fileInput = document.getElementById('file-input');
+    const loadingText = document.querySelector('#halaman-loading p');
 
-    let historyStack = [halamanKategori];
+    let historyStack = [halamanDept];
 
     function goToPage(halamanTujuan, isBack = false) {
         document.querySelectorAll('.halaman').forEach(h => h.classList.add('hidden'));
         halamanTujuan.classList.remove('hidden');
         
-        if (halamanTujuan === halamanKategori) {
+        if (halamanTujuan === halamanDept) {
             tombolKembali.classList.add('hidden');
         } else {
             tombolKembali.classList.remove('hidden');
@@ -26,12 +29,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Event listener untuk tombol CORE dan FORMAL
-    halamanKategori.addEventListener('click', function(e) {
+    // Event listener untuk tombol departemen
+    halamanDept.addEventListener('click', function(e) {
         if (e.target.classList.contains('btn')) {
-            const kategori = e.target.getAttribute('data-kategori');
-            formKategori.value = kategori;
-            judulForm.textContent = `Upload Dokumen ${kategori}`;
+            formDepartemen.value = e.target.getAttribute('data-dept');
+            goToPage(halamanMedia);
+        }
+    });
+
+    // Event listener untuk tombol tipe media
+    halamanMedia.addEventListener('click', function(e) {
+        if (e.target.classList.contains('btn')) {
+            const mediaType = e.target.getAttribute('data-media');
+            formTipeMedia.value = mediaType;
+            if (mediaType === 'FOTO') {
+                fileInput.setAttribute('accept', 'image/*');
+            } else if (mediaType === 'VIDEO') {
+                fileInput.setAttribute('accept', 'video/*');
+            } else {
+                fileInput.removeAttribute('accept');
+            }
             goToPage(halamanForm);
         }
     });
@@ -45,12 +62,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // =================== LOGIKA UPLOAD BARU DENGAN PRESIGNED URL ===================
+    // LOGIKA UPLOAD DENGAN PRESIGNED URL
     uploadForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const formData = new FormData(this);
-        const files = document.getElementById('file-input').files;
+        const files = fileInput.files;
 
         if (files.length === 0) {
             alert('Silakan pilih file terlebih dahulu.');
@@ -107,10 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         alert(`Upload selesai!\n\nBerhasil: ${successfulUploads} file\nGagal: ${failedUploads} file`);
         
-        historyStack = [halamanKategori];
-        goToPage(halamanKategori);
+        historyStack = [halamanDept];
+        goToPage(halamanDept);
         uploadForm.reset();
-        loadingText.textContent = 'Sedang Mengupload...'; // Reset text loading
+        loadingText.textContent = 'Sedang Mengupload...';
     });
-    // ============================================================================
 });
