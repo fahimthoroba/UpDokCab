@@ -1,0 +1,135 @@
+/* Pengaturan Dasar */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+}
+
+header {
+    background-color: #28a745;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.halaman { padding: 20px; }
+.hidden { display: none; }
+
+/* Tombol Navigasi Gaya Lama */
+.btn {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn:hover { background-color: #0056b3; }
+
+/* Tombol Kembali di Header */
+.tombol-header {
+    position: absolute;
+    left: 15px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 10px;
+}
+.tombol-header:hover { opacity: 0.8; }
+
+/* === BAGIAN FORM MODERN === */
+form {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #343A40;
+}
+input[type="text"], textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #DEE2E6;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box; 
+}
+input[type="text"]:focus, textarea:focus {
+    outline: none;
+    border-color: #18A2B8;
+    box-shadow: 0 0 0 3px rgba(24, 162, 184, 0.2);
+}
+.radio-group p {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #343A40;
+    margin-bottom: 10px;
+}
+.radio-group input[type="radio"] { opacity: 0; position: fixed; width: 0; }
+.radio-group label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 20px;
+    font-weight: normal;
+}
+.radio-group label::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #DEE2E6;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s;
+}
+.radio-group label:hover::before { border-color: #18A2B8; }
+.radio-group input[type="radio"]:checked + label::before {
+    border-color: #18A2B8;
+    background-color: #18A2B8;
+    box-shadow: inset 0 0 0 4px white;
+}
+input[type="file"] {
+    font-size: 1rem;
+    border: 1px solid #DEE2E6;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Animasi Loading */
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }

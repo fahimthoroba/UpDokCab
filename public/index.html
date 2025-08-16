@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpDokCab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <button id="tombol-kembali" class="tombol-header hidden">&lt;</button>
+        <span>UpDokCab</span>
+    </header>
+
+    <main>
+        <div id="halaman-departemen" class="halaman">
+            <h2>Pilih Departemen</h2>
+            <button class="btn" data-dept="DEPOR">DEPOR</button>
+            <button class="btn" data-dept="KADERISASI">KADERISASI</button>
+            <button class="btn" data-dept="DJSP">DJSP</button>
+            <button class="btn" data-dept="DAKWAH">DAKWAH</button>
+            <button class="btn" data-dept="DESBOR">DESBOR</button>
+            <button class="btn" data-dept="LEMBAGA">LEMBAGA</button>
+        </div>
+
+        <div id="halaman-media" class="halaman hidden">
+            <h2>Pilih Tipe Media</h2>
+            <button class="btn" data-media="FOTO">FOTO</button>
+            <button class="btn" data-media="VIDEO">VIDEO</button>
+        </div>
+
+        <div id="halaman-form" class="halaman hidden">
+            <h2>Lengkapi Data</h2>
+            <form id="uploadForm">
+                <input type="hidden" name="departemen" id="form-departemen">
+                <input type="hidden" name="tipe_media" id="form-tipe-media">
+                
+                <label for="nama_pengapload">Nama Pengapload:</label>
+                <input type="text" id="nama_pengapload" name="nama_pengapload" required>
+
+                <label for="keterangan">Keterangan:</label>
+                <textarea id="keterangan" name="keterangan" rows="3"></textarea>
+
+                <div class="radio-group">
+                    <p>Pilih Kategori:</p>
+                    <input type="radio" id="formal" name="kategori" value="FORMAL" checked>
+                    <label for="formal">Formal</label>
+                    <input type="radio" id="core" name="kategori" value="CORE">
+                    <label for="core">Core</label>
+                </div>
+                
+                <label for="file-input">Pilih File (Bisa lebih dari satu):</label>
+                <input type="file" id="file-input" name="files" multiple required>
+                
+                <button type="submit" class="btn">KIRIM</button>
+            </form>
+        </div>
+        
+        <div id="halaman-loading" class="halaman hidden">
+            <div class="loader"></div>
+            <p>Sedang Mengupload...</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

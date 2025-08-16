@@ -1,0 +1,9 @@
+# Dependencies folder
+/node_modules
+
+# Secret credential files
+kredensial.json
+client_secret.json
+
+# Environment variables file
+.env
